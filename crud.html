@@ -162,7 +162,7 @@
              <td>
               <button onclick="editUser(${index})" data-bs-toggle="modal" data-bs-target="#exampleModal"
         data-bs-whatever="@mdo"> edit</button>
-              <button>delete</button>
+              <button onclick="deleteUser(${index})">delete</button>
               </td>
               </tr>
              `
@@ -216,7 +216,10 @@
       tabledata()
 
   }
-
+   function deleteUser(deleteindex){
+    user.splice(deleteindex, 1)
+    tabledata()
+   }
  
     
 
