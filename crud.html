@@ -1,0 +1,226 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="crud.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+
+<body>
+  <div class="heading">
+    <strong>JAVASCRIPT CRUD OPRATION </strong>
+  </div>
+  <div class="top">
+    <div class="left">
+      <input type="search" id="myInput" placeholder=" 🔍︎ Search" height="45px">
+    </div>
+    <div class="addUser modal-dialog-centered">
+
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+        data-bs-whatever="@mdo"> + Add New User</button>
+
+    </div>
+
+  </div>
+  <table class="table table-striped">
+
+
+    <thead class="table-dark">
+      <th>Sr</th>
+
+      <th>Name</th>
+      <th>Email</th>
+      <th>DOB</th>
+
+      <th>Mobile</th>
+      <th>Password</th>
+      <th>Action</th>
+      </tr>
+
+    </thead>
+    <tbody id="tableid">
+    </tbody>
+
+  </table>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Names:</label>
+              <input type="text" class="form-control" id="nameId" required>
+            </div>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Email:</label>
+              <input type="email" class="form-control" id="emailId" required>
+            </div>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">DOB:</label>
+              <input type="date" class="form-control" id="dobId">
+            </div>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Mobile:</label>
+              <input type="number" class="form-control" id="mobileId">
+            </div>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Password:</label>
+              <input type="password" class="form-control" id="passwordId">
+            </div>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Action:</label>
+              <input type="text" class="form-control" id="ActionId">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button onclick="showData()" class="btn btn-primary" id="submitBtn">Submit</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+</body>
+<script>
+  document.getElementById("myInput").addEventListener("focus", function () {
+    window.location.href = "https://www.google.com";
+  });
+  let user = []
+  let editIndex = -1
+  function showData() {
+    let namedata = document.getElementById("nameId").value
+    let emaildata = document.getElementById("emailId").value
+    let Dobdata = document.getElementById("dobId").value
+    let Mobiledata = document.getElementById("mobileId").value
+    let Passworddata = document.getElementById("passwordId").value
+    let Actiondata = document.getElementById("ActionId").value
+
+    if (namedata.length > 0 && emaildata.length > 0 && Dobdata.length > 0 && Mobiledata.length > 0 && Passworddata.length > 0 && Actiondata.length > 0) {
+
+      let users = {
+        names: namedata,
+        emails: emaildata,
+        dobs: Dobdata,
+        Mobiles: Mobiledata,
+        Passwords: Passworddata,
+        Actions: Actiondata
+      }
+      document.getElementById("nameId").value = ""
+      document.getElementById("emailId").value = ""
+      document.getElementById("dobId").value = ""
+      document.getElementById("mobileId").value = ""
+      document.getElementById("passwordId").value = ""
+
+
+      user.push(users)
+
+      tabledata()
+
+    }
+    else {
+      console.error("error")
+    }
+
+
+
+  }
+  function tabledata() {
+    let data = document.getElementById("tableid")
+    data.innerHTML = ""
+    user.forEach(function (item, index) {
+      console.log("item:", item, "index:", index)
+      data.innerHTML +=
+        `
+             <tr>
+              <td>${index + 1}</td>
+              <td>${item.names}</td>
+              <td>${item.emails}</td>
+              <td>${item.dobs}</td>
+              <td>${item.Mobiles}</td>
+              <td>${item.Passwords}</td>
+             <td>
+              <button onclick="editUser(${index})" data-bs-toggle="modal" data-bs-target="#exampleModal"
+        data-bs-whatever="@mdo"> edit</button>
+              <button>delete</button>
+              </td>
+              </tr>
+             `
+    })
+
+  }
+
+  function editUser(index){
+    console.log("index", index);
+    console.log("array data", user);
+    console.log("index data", user[index]);
+     
+    document.getElementById("nameId").value = user[index]. names
+      document.getElementById("emailId").value =user[index]. emails
+      document.getElementById("dobId").value = user[index]. dobs
+      document.getElementById("mobileId").value =user[index].Mobiles
+      document.getElementById("passwordId").value = user[index].Passwords
+     
+      editIndex=index
+
+      document.getElementById("submitBtn").innerHTML='update user'
+      document.getElementById("submitBtn").setAttribute("onclick", "updateAll()")
+
+
+  }
+
+  function updateAll(){
+     let name = document.getElementById("nameId").value
+    let email = document.getElementById("emailId").value
+    let Dob = document.getElementById("dobId").value
+    let Mobile = document.getElementById("mobileId").value
+    let Password= document.getElementById("passwordId").value
+    let Action = document.getElementById("ActionId").value
+    
+    user[editIndex].names= name
+    user[editIndex].emails= email
+    user[editIndex].dobs= Dob 
+    user[editIndex]. Mobiles= Mobile
+    user[editIndex].Passwords= Password
+
+    editIndex=-1
+    document.getElementById("nameId").value = ""
+      document.getElementById("emailId").value = ""
+      document.getElementById("dobId").value = ""
+      document.getElementById("mobileId").value = ""
+      document.getElementById("passwordId").value = ""
+
+       document.getElementById("submitBtn").innerHTML='Submit'
+      document.getElementById("submitBtn").setAttribute("onclick", "showData()")
+
+      tabledata()
+
+  }
+
+ 
+    
+
+
+</script>
+
+</html>
