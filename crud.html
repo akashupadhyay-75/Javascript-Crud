@@ -119,12 +119,12 @@
     if (namedata.length > 0 && emaildata.length > 0 && Dobdata.length > 0 && Mobiledata.length > 0 && Passworddata.length > 0 && Actiondata.length > 0) {
 
       let users = {
-        names: namedata,
-        emails: emaildata,
-        dobs: Dobdata,
-        Mobiles: Mobiledata,
-        Passwords: Passworddata,
-        Actions: Actiondata
+        name: namedata,
+        email: emaildata,
+        dob: Dobdata,
+        Mobile: Mobiledata,
+        Password: Passworddata,
+        Action: Actiondata
       }
       document.getElementById("nameId").value = ""
       document.getElementById("emailId").value = ""
@@ -154,11 +154,11 @@
         `
              <tr>
               <td>${index + 1}</td>
-              <td>${item.names}</td>
-              <td>${item.emails}</td>
-              <td>${item.dobs}</td>
-              <td>${item.Mobiles}</td>
-              <td>${item.Passwords}</td>
+              <td>${item.name}</td>
+              <td>${item.email}</td>
+              <td>${item.dob}</td>
+              <td>${item.Mobile}</td>
+              <td>${item.Password}</td>
              <td>
               <button onclick="editUser(${index})" data-bs-toggle="modal" data-bs-target="#exampleModal"
         data-bs-whatever="@mdo"> edit</button>
@@ -175,11 +175,11 @@
     console.log("array data", user);
     console.log("index data", user[index]);
      
-    document.getElementById("nameId").value = user[index]. names
-      document.getElementById("emailId").value =user[index]. emails
-      document.getElementById("dobId").value = user[index]. dobs
-      document.getElementById("mobileId").value =user[index].Mobiles
-      document.getElementById("passwordId").value = user[index].Passwords
+    document.getElementById("nameId").value = user[index]. name
+      document.getElementById("emailId").value =user[index]. email
+      document.getElementById("dobId").value = user[index]. dob
+      document.getElementById("mobileId").value =user[index].Mobile
+      document.getElementById("passwordId").value = user[index].Password
      
       editIndex=index
 
@@ -197,11 +197,11 @@
     let Password= document.getElementById("passwordId").value
     let Action = document.getElementById("ActionId").value
     
-    user[editIndex].names= name
-    user[editIndex].emails= email
-    user[editIndex].dobs= Dob 
-    user[editIndex]. Mobiles= Mobile
-    user[editIndex].Passwords= Password
+    user[editIndex].name= name
+    user[editIndex].email= email
+    user[editIndex].dob= Dob 
+    user[editIndex]. Mobile= Mobile
+    user[editIndex].Password= Password
 
     editIndex=-1
     document.getElementById("nameId").value = ""
