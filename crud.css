@@ -1,4 +1,8 @@
-
+*{
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
 .heading{
     text-align: center;
     font-size: 37px;
@@ -18,12 +22,13 @@
     
 }
   table { 
-            width: 100%;
+            width: 99% !important;
            margin: 30px 0px 10px 5px;
-          
+           border: 1px solid gainsboro;
+        
            
         }
-
+       
     
         tbody{
             border: 1px solid rgb(218, 38, 38);
